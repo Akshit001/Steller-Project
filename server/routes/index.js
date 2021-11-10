@@ -6,9 +6,5 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
-/* GET surveys page. */
-router.get('/survey', function(req, res, next) {
-  res.render('survey', { title: 'Survey' });
-});
 
 module.exports = router;
