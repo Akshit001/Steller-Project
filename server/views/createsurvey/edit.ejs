@@ -1,0 +1,66 @@
+<!-- Bohyun Kim, #301131832, COMP 229, Section 008 -->
+
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<div class="row">
+    <div class="offset-md-4 col-md-4">
+        <div class="title text-center my-5">
+           <h1>Create Survey</h1>
+        </div>
+
+       
+        <form method="POST" autocomplete="off">
+            
+            <div class="title my-5">
+                <h4>T / F Questions</h4>
+            </div>
+            <fieldset class="form-group my-3">
+                <label for="question1" class="h5">Question 1</label>
+                <input type="text" class="form-control"
+                name="question1" placeholder="Enter username"
+                id="question1" required>
+            </fieldset>
+
+            <fieldset class="form-group my-3">
+                <label for="question2" class="h5">Question 2 </label>
+                <input type="text" class="form-control"
+                name="question2" placeholder="Enter password"
+                id="question2" required>
+            </fieldset>
+
+            <fieldset class="form-group my-3">
+               <label for="question3" class="h5">Question 3</label>
+               <input type="text" class="form-control"
+               name="question3" placeholder="Enter Email Address"
+               id="question3" required>
+            </fieldset>
+
+          
+            <fieldset class="form-group my-3">
+                <label for="question4" class="h5">Question 4</label>
+                <input type="text" class="form-control"
+                name="question4" placeholder="Enter Email Address"
+                id="question4" required>
+            </fieldset>
+
+            <div class="title my-5">
+                <h4>Comments</h4>
+            </div>
+
+            <fieldset class="form-group my-3">
+                <textarea id="comments" name="comments" rows="4" cols="55"></textarea>
+            </fieldset>
+
+            <fieldset class="form-group text-center my-5">
+                <input type="submit" class="btn btn-primary mx-3" value="Create">
+                <a href="/survey-list">
+                    <input type="button" class="btn btn-secondary mx-3" value="Cancel">
+                </a>
+            </fieldset>
+
+        </form>
+    </div>
+</div>
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %>
