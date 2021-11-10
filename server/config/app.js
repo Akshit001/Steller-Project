@@ -1,4 +1,5 @@
 /*Akshit Narang, #301177669, COMP 229, Section 008*/
+/*Bohyun Kim, #301131832, COMP 229, Section 008*/
 
 let createError = require('http-errors');
 let express = require('express');
@@ -6,24 +7,27 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+let indexRouter = require('../routes/index');
+let usersRouter = require('../routes/users');
+let surveyRouter = require('../routes/survey')
 
 let app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, '../../public')));
+app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+//routner
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/survey-list', surveyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
