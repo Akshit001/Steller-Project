@@ -5,11 +5,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('createsurvey/list', { title: 'Create Survey' });
+  res.render('createsurvey/list', { title: 'Survey' });
 });
 
 router.get('/add', function(req, res, next) {
-  res.render('createsurvey/add', { title: 'Create Survey' });
+  res.render('createsurvey/add', { title: 'Survey' });
 });
 
 
