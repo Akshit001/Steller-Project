@@ -19,6 +19,9 @@
     "git": "^0.1.5",
     "http-errors": "~1.6.3",
     "jquery": "^3.6.0",
+    "mongodb": "^4.1.4",
+    "mongodb-connection-string-url": "^2.1.0",
+    "mongoose": "^6.0.12",
     "morgan": "~1.9.1"
   },
   "description": "Group Project for Web Application Development, COMP 229, Section 008 - Group 3",

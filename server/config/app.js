@@ -1,5 +1,6 @@
 /*Akshit Narang, #301177669, COMP 229, Section 008*/
 /*Bohyun Kim, #301131832, COMP 229, Section 008*/
+/*Diego Poblete #301158204, COMP 229, Section 008*/
 
 let createError = require('http-errors');
 let express = require('express');
@@ -14,10 +15,18 @@ let surveyRouter = require('../routes/survey')
 let app = express();
 
 
-// database setup
+// Database setup
 
+let mongoose = require('mongoose');
+let dbURI = require('./db');
 
+mongoose.connect(dbURI.AtlasDB);
 
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
+mongoDB.once('open', ()=>{
+  console.log('Connected to MongoDB...');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
