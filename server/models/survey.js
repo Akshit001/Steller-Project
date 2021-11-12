@@ -8,7 +8,7 @@ let surveyModel = mongoose.Schema(
     title: String,
     writerName: String,   // will be used to show the writer in the survey list
     // Should be replaced with userId when authentication is added
-    startDate : Date,
+    startDate: Date,
     endDate: Date,  
   },
   {

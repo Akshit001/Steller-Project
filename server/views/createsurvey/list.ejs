@@ -5,14 +5,37 @@
 
 <div class="title text-center my-5">
     <h1>Survey List</h1>
- </div>
+</div>
 
+<div>
+    <table>
+        <!-- Header Row-->
+        <tr>
+            <th>Survey Name</th>
+            <th>Author</th>
+            <th>Start Date</th>                    
+            <th>End Date</th>
+        </tr>
+
+        <!-- Repeatable Template Row -->
+
+        <% for(let count = 0; count < surveys.length; count++) { %>
+            <tr>
+                <td><%= surveys[count].title %></td>
+                <td><%= surveys[count].writerName %></td>
+                <td><%= surveys[count].startDate.toDateString() %></td>
+                <td><%= surveys[count].endDate.toDateString() %></td>
+            </tr>
+        <% } %>
+    </table>
+</div>
 
 <!-- I'm going to make survey list here after database is set up -->
  
 
 <a href="/survey-list/add" class="btn btn-primary" role="button">
-    <i class = "fas fa-plus-circle"></i> Create Survey</a>
+    <i class = "fas fa-plus-circle"></i> Create Survey
+</a>
 
 
 <%- include ../partials/bottom_nav.ejs %>

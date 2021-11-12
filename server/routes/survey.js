@@ -3,10 +3,10 @@
 var express = require('express');
 var router = express.Router();
 
+let surveyController = require('../controllers/survey');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('createsurvey/list', { title: 'Survey' });
-});
+router.get('/', surveyController.surveyList);
 
 router.get('/add', function(req, res, next) {
   res.render('createsurvey/add_edit', { title: 'Survey' });

@@ -2,7 +2,7 @@
 
 let mongoose = require('mongoose');
 
-let optionModel = mongoose.schema(
+let optionModel = mongoose.Schema(
     {
         questionId: Number,
         option: String
