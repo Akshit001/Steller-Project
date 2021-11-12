@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/add', function(req, res, next) {
-  res.render('createsurvey/add', { title: 'Survey' });
+  res.render('createsurvey/add_edit', { title: 'Survey' });
 });
 
 
