@@ -6,6 +6,8 @@ let Survey = require('../models/survey');
 let Question = require('../models/question');
 let Option = require('../models/option');
 
+
+
 module.exports.surveyList = function(req, res, next) {
     Survey.find((err, surveyList) => {
         if (err)
@@ -16,8 +18,9 @@ module.exports.surveyList = function(req, res, next) {
         {
             res.render('createsurvey/list', {
                 title: "Survey List",
-                surveys: surveyList
-            })
+                surveys: surveyList,
+                displayName: req.user ? req.user.displayName:''
+            });
         }
     });
 }

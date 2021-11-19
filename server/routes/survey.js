@@ -5,12 +5,22 @@ var router = express.Router();
 
 let surveyController = require('../controllers/survey');
 
+
+function requireAuth(req,res,next)
+{
+    //check if the user is logged in
+    if(!req.isAuthenticated())
+    {
+        return res.redirect('/login');
+    }
+    next();
+}
+
+
 /* GET home page. */
 router.get('/', surveyController.surveyList);
 
-router.get('/add', function(req, res, next) {
-  res.render('createsurvey/add_edit', { title: 'Survey' });
-});
+router.get('/add', requireAuth ,surveyController.surveyList)
 
 
 module.exports = router;
