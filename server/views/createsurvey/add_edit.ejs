@@ -1,0 +1,67 @@
+<!-- Bohyun Kim, #301131832, COMP 229, Section 008 -->
+<!-- Diego Poblete #301158204, COMP 229, Section 008 -->
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<div class="row">
+    <div class="offset-md-4 col-md-4">
+        <div class="title text-center my-5">
+           <h1><% title %></h1>
+        </div>
+
+        <form method="POST" autocomplete="off">
+
+            <fieldset class="form-group my-3">
+                <label for="surveyTitle" class="h5">The title of survey</label>
+                <input type="text" class="form-control"
+                name="surveTitle" placeholder="Enter the title of survey"
+                id="surveyTitle" required value="<% survey.title %>">
+            </fieldset>
+            
+            <fieldset class="form-group my-3">
+                <label for="startDate" class="col-form-label">Start Date</label>
+                <div class="col-5">
+                  <input type="date" class="form-control"
+                  id="startDate"
+                  value= "<% survey.startDate %>"
+                  name="startDate">
+                </div>
+
+                <label for="endDate" class="col-form-label">End Date</label>
+                <div class="col-5">
+                  <input type="date" class="form-control"
+                  id="endDate"
+                  value= "<% survey.endDate %>"
+                  name="endDate">
+                </div>
+            </fieldset>
+
+            <div class="title my-5">
+                <h4>Description</h4>
+            </div>
+
+            <fieldset class="form-group my-3">
+                <textarea id="description" name="description" rows="4" cols="55"><% survey.description %></textarea>
+            </fieldset>
+
+            <div id="questionHolder">
+                <!-- Here goes the questions -->
+            </div>
+
+            <input type="button" onclick="createQuestion()" value="New Question">
+
+            <fieldset class="form-group text-center my-5">
+                <input type="submit" class="btn btn-primary mx-3" value="Create">
+                <a href="/survey-list">
+                    <input type="button" class="btn btn-secondary mx-3" value="Cancel">
+                </a>
+            </fieldset>
+
+        </form>
+    </div>
+</div>
+
+<script src="/Scripts/survey.js"></script>
+
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %>

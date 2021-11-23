@@ -1,0 +1,45 @@
+<!-- Bohyun Kim, #301131832, COMP 229, Section 008 -->
+<!-- Diego Poblete #301158204, COMP 229, Section 008 -->
+
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<div class="title text-center my-5">
+    <h1>Survey List</h1>
+</div>
+
+<div>
+    <table>
+        <!-- Header Row-->
+        <% if (surveys.length > 0) { %>
+            <tr>
+                <th>Survey Name</th>
+                <th>Description</th>
+                <th>Start Date</th>                    
+                <th>End Date</th>
+            </tr>
+        <% } %>
+
+        <!-- Repeatable Template Row -->
+
+        <% for(let count = 0; count < surveys.length; count++) { %>
+            <tr>
+                <td><%= surveys[count].title %></td>
+                <td><%= surveys[count].description %></td>
+                <td><%= surveys[count].startDate.toDateString() %></td>
+                <td><%= surveys[count].endDate.toDateString() %></td>
+            </tr>
+        <% } %>
+    </table>
+</div>
+
+<!-- I'm going to make survey list here after database is set up -->
+ 
+
+<a href="/survey-list/add" class="btn btn-primary" role="button">
+    <i class = "fas fa-plus-circle"></i> Create Survey
+</a>
+
+
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %>
