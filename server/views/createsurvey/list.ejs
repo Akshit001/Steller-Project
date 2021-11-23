@@ -1,4 +1,5 @@
 <!-- Bohyun Kim, #301131832, COMP 229, Section 008 -->
+<!-- Diego Poblete #301158204, COMP 229, Section 008 -->
 
 <%- include ../partials/header.ejs %>
 <%- include ../partials/main_nav.ejs %>
@@ -10,19 +11,21 @@
 <div>
     <table>
         <!-- Header Row-->
-        <tr>
-            <th>Survey Name</th>
-            <th>Author</th>
-            <th>Start Date</th>                    
-            <th>End Date</th>
-        </tr>
+        <% if (surveys.length > 0) { %>
+            <tr>
+                <th>Survey Name</th>
+                <th>Description</th>
+                <th>Start Date</th>                    
+                <th>End Date</th>
+            </tr>
+        <% } %>
 
         <!-- Repeatable Template Row -->
 
         <% for(let count = 0; count < surveys.length; count++) { %>
             <tr>
                 <td><%= surveys[count].title %></td>
-                <td><%= surveys[count].writerName %></td>
+                <td><%= surveys[count].description %></td>
                 <td><%= surveys[count].startDate.toDateString() %></td>
                 <td><%= surveys[count].endDate.toDateString() %></td>
             </tr>

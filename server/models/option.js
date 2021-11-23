@@ -4,7 +4,7 @@ let mongoose = require('mongoose');
 
 let optionModel = mongoose.Schema(
     {
-        questionId: Number,
+        questionId: String,
         option: String
     },
     {

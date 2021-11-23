@@ -1,4 +1,5 @@
 /*Bohyun Kim, #301131832, COMP 229, Section 008*/
+/*Diego Poblete #301158204, COMP 229, Section 008*/
 
 var express = require('express');
 var router = express.Router();
@@ -18,9 +19,12 @@ function requireAuth(req,res,next)
 
 
 /* GET home page. */
-router.get('/', surveyController.surveyList);
+router.get('/',requireAuth, surveyController.displaySurveyList);
 
-router.get('/add', requireAuth ,surveyController.surveyList)
+router.get('/add', requireAuth, surveyController.displaySurveyAdd);
+router.post('/add', requireAuth, surveyController.saveSurveyAdd);
+
+router.get('/edit/:id', requireAuth, surveyController.displaySurveyEdit);
 
 
 module.exports = router;

@@ -4,7 +4,7 @@ let mongoose = require('mongoose');
 
 let questionModel = mongoose.Schema(
     {
-        surveyId: Number,
+        surveyId: String,
         question: String
     },
     {
