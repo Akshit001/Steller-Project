@@ -4,8 +4,9 @@ let mongoose = require('mongoose');
 
 let questionModel = mongoose.Schema(
     {
-        surveyId: Number,
-        question: String
+        surveyId: String,
+        question: String,
+        questionNumber: Number
     },
     {
         collection: "question"

@@ -19,8 +19,8 @@
             <fieldset class="form-group my-3">
                 <label for="surveytitle" class="h5">The title of survey</label>
                 <input type="text" class="form-control"
-                name="surveytitle" placeholder="Enter the title of survey"
-                id="surveytitle" required>
+                name="surveyTitle" placeholder="Enter the title of survey"
+                id="surveyTitle" required value="<% survey.title %>">
             </fieldset>
 
             
@@ -42,157 +42,6 @@
                 </div>
             </fieldset>
 
-           
-            
-            <fieldset class="form-group my-3">
-                <label for="question1" class="h5">Question 1</label>
-                <input type="text" class="form-control"
-                name="question1" 
-                id="question1" required>
-            </fieldset>
-
-            <fieldset class="form-group my-3">
-                <label for="question1Option1" class="col-form-label">Option 1</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question1Option1"
-                  name="question1Option1">
-                </div>
-
-                <label for="question1Option2" class="col-form-label">Option 2</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question1Option2"
-                  name="question1Option2">
-                </div>
-
-                <label for="question1Option3" class="col-form-label">Option 3</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question1Option3"
-                  name="question1Option3">
-                </div>
-
-                <label for="question1Option4" class="col-form-label">Option 4</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question1Option4"
-                  name="question1Option4">
-                </div>
-            </fieldset>
-
-            <fieldset class="form-group my-3">
-                <label for="question2" class="h5">Question 2 </label>
-                <input type="text" class="form-control"
-                name="question2" 
-                id="question2" required>
-            </fieldset>
-
-            <fieldset class="form-group my-3">
-                <label for="question2Option1" class="col-form-label">Option 1</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question2Option1"
-                  name="question2Option1">
-                </div>
-
-                <label for="question2Option2" class="col-form-label">Option 2</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question2Option2"
-                  name="question2Option2">
-                </div>
-
-                <label for="question2Option3" class="col-form-label">Option 3</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question2Option3"
-                  name="question2Option3">
-                </div>
-
-                <label for="question1Option4" class="col-form-label">Option 4</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question2Option4"
-                  name="question2Option4">
-                </div>
-            </fieldset>
-
-            <fieldset class="form-group my-3">
-               <label for="question3" class="h5">Question 3</label>
-               <input type="text" class="form-control"
-               name="question3"
-               id="question3" required>
-            </fieldset>
-
-            <fieldset class="form-group my-3">
-                <label for="question3Option1" class="col-form-label">Option 1</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question3Option1"
-                  name="question3Option1">
-                </div>
-
-                <label for="question3Option2" class="col-form-label">Option 2</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question3Option2"
-                  name="question3Option2">
-                </div>
-
-                <label for="question3Option3" class="col-form-label">Option 3</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question3Option3"
-                  name="question3Option3">
-                </div>
-
-                <label for="question3Option4" class="col-form-label">Option 4</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question3Option4"
-                  name="question3Option4">
-                </div>
-            </fieldset>
-
-          
-            <fieldset class="form-group my-3">
-                <label for="question4" class="h5">Question 4</label>
-                <input type="text" class="form-control"
-                name="question4" 
-                id="question4" required>
-            </fieldset>
-
-            <fieldset class="form-group my-3">
-                <label for="question4Option1" class="col-form-label">Option 1</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question4Option1"
-                  name="question4Option1">
-                </div>
-
-                <label for="question3Option2" class="col-form-label">Option 2</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question4Option2"
-                  name="question4Option2">
-                </div>
-
-                <label for="question3Option3" class="col-form-label">Option 3</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question4Option3"
-                  name="question4Option3">
-                </div>
-
-                <label for="question3Option4" class="col-form-label">Option 4</label>
-                <div class="col-5">
-                  <input type="text" class="form-control"
-                  id="question4Option4"
-                  name="question4Option4">
-                </div>
-            </fieldset>
-
             <div class="title my-5">
                 <h4>Description</h4>
             </div>
@@ -201,8 +50,12 @@
                 <textarea id="description" name="description" rows="4" cols="55"></textarea>
             </fieldset>
 
+            <fieldset id="questionHolder">
+              <!-- Here goes the questions -->
+            </fieldset>
+
             <fieldset class="form-group text-center my-5">
-                <input type="submit" class="btn btn-primary mx-3" value="Create">
+                <input type="submit" class="btn btn-primary mx-3" value="Create" onclick="sendData()">
                 <a href="/survey-list">
                     <input type="button" class="btn btn-secondary mx-3" value="Cancel">
                 </a>
