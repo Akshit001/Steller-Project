@@ -152,7 +152,7 @@ tfoot {
         <a href="/survey-list">
             <i class="fas fa-poll-h"></i>
 
- <caption>Survey List</caption></div>
+ <caption>List</caption></div>
         </a>
         
 
@@ -174,13 +174,14 @@ tfoot {
                 <br>
                 <br>
                 <br>
-        <table border="1" width="1785" height="100">
+        <table border="1" width="100%" height="100">
             <thead>
             
         <!-- Header Row-->
         <% if (surveys.length > 0) { %>
             <tr align="center">
                 <th>Survey Name</th>
+                <th>Writer</th>
                 <th>Description</th>
                 <th>Start Date</th>                    
                 <th>End Date</th>
@@ -191,7 +192,8 @@ tfoot {
 <tbody>
         <% for(let count = 0; count < surveys.length; count++) { %>
             <tr align="center">
-                <td><%= surveys[count].title %></td>
+                <td><%= surveys[count].surveyTitle %></td>
+                <td><%= writer %></td>
                 <td><%= surveys[count].description %></td>
                 <td><%= surveys[count].startDate.toDateString() %></td>
                 <td><%= surveys[count].endDate.toDateString() %></td>

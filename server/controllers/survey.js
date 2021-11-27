@@ -20,6 +20,7 @@ module.exports.displaySurveyList = function(req, res, next) {
         {
             res.render('createsurvey/list', {
                 title: "Survey List",
+                writer: req.user.displayName,
                 surveys: surveyList,
                 displayName: req.user ? req.user.displayName:''
             });
@@ -34,7 +35,8 @@ module.exports.displaySurveyAdd = function(req, res, next) {
 
     res.render('createsurvey/add_edit', {
         title: 'Create a new survey',
-        survey: newSurvey
+        survey: newSurvey,
+        displayName: req.user ? req.user.displayName:''
     });
 }
 
@@ -43,7 +45,7 @@ module.exports.saveSurveyAdd = function(req, res, next) {
     let newSurvey = Survey({
         _id: req.body.id,
         userId: req.user.id,
-        title: req.body.surveyTitle,
+        surveyTitle: req.body.surveyTitle ,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         description: req.body.description
