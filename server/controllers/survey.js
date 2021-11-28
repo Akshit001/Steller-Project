@@ -50,7 +50,7 @@ module.exports.saveSurveyAdd = function(req, res, next) {
         description: req.body.description
     });
 
-    let questions = req.body.question.length;
+    let questions = Object.keys(req.body.q).length;
 
     Survey.create(newSurvey, (err, survey) => {
         if (err)
@@ -60,11 +60,9 @@ module.exports.saveSurveyAdd = function(req, res, next) {
         }
         else
         {
-
-            console.log(survey);
             if (questions > 0) {
                 for (let i = 0; i < questions; i++){
-                    processQuestion(req, i);
+                    processQuestion(req, i, newSurvey._id);
                 }
             }
             res.redirect('/survey-list');
@@ -114,17 +112,17 @@ getQuestions = function(sid) {
     });
 }
 
-processQuestion = function(req, questionNumber) {
+processQuestion = function(req, questionNumber, sid) {
     let q = Question();
 
     let newQuestion = Question({
         _id: q._id,
-        surveyId: req.body.id,
+        surveyId: sid,
         question: req.body.q[questionNumber],
         questionNumber: questionNumber
     });
 
-    let options = req.body.option[questionNumber].length;
+    let options = Object.keys(req.body.o[questionNumber]).length;
 
     Question.create(newQuestion, (err, question) => {
         if (err)
@@ -174,10 +172,6 @@ processOption = function (req, questionNumber, qid, optionNumber) {
         {
             console.log(err);
             res.end(err);
-        }
-        else
-        {
-            console.log(option);
         }
     });
 }

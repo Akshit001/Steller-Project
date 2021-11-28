@@ -4,7 +4,7 @@ let mongoose = require('mongoose');
 
 let surveyModel = mongoose.Schema(
   {
-    surveyTitle : String,
+    title : String,
     userId: String,
     startDate: Date,
     endDate: Date,
