@@ -7,9 +7,10 @@ let Question = require('../models/question');
 let Option = require('../models/option');
 
 
+module.exports.displaySurveyList = function(req, res, next) {
+    let uid = req.user.id;
 
-module.exports.surveyList = function(req, res, next) {
-    Survey.find((err, surveyList) => {
+    Survey.find({userId: uid}, (err, surveyList) => {
         if (err)
         {
             return console.error(err);
@@ -47,7 +48,7 @@ module.exports.saveSurveyAdd = function(req, res, next) {
         description: req.body.description
     });
 
-    let questions = req.body.q;
+    let questions = req.body.question.length;
 
     Survey.create(newSurvey, (err, survey) => {
         if (err)
@@ -116,11 +117,11 @@ processQuestion = function(req, questionNumber) {
     let newQuestion = Question({
         _id: q._id,
         surveyId: req.body.id,
-        question: req.body.questions[questionNumber - 1],
+        question: req.body.q[questionNumber],
         questionNumber: questionNumber
     });
 
-    let options = req.body.o[questionNumber - 1];
+    let options = req.body.option[questionNumber].length;
 
     Question.create(newQuestion, (err, question) => {
         if (err)
@@ -162,7 +163,7 @@ processOption = function (req, questionNumber, qid, optionNumber) {
     let newOption = Option({
         _id: o._id,
         questionId: qid,
-        option: req.body.options[questionNumber - 1][optionNumber - 1],
+        option: req.body.o[questionNumber][optionNumber],
         optionNumber: optionNumber
     })
 
