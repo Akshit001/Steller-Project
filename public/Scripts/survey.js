@@ -6,7 +6,7 @@ var o = [];
 function createQuestion() {
     let newQuestion = document.createElement('div');
     newQuestion.innerHTML = 
-    `<fieldset name="question[${q}]">
+    `<fieldset id="question[${q}]" name="question[${q}]">
         <h4>Question ${q + 1}</h4>
         <input type="text" name="q[${q}]">
         <div id="options[${q}]"></div>
