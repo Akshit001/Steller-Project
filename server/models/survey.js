@@ -4,11 +4,11 @@ let mongoose = require('mongoose');
 
 let surveyModel = mongoose.Schema(
   {
-    title: String,
-    writerName: String,   // will be used to show the writer in the survey list
-    // Should be replaced with userId when authentication is added
+    surveyTitle : String,
+    userId: String,
     startDate: Date,
-    endDate: Date,  
+    endDate: Date,
+    description: String  
   },
   {
     collection: 'survey'

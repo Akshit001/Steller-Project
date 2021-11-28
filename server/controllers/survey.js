@@ -6,11 +6,12 @@ let Survey = require('../models/survey');
 let Question = require('../models/question');
 let Option = require('../models/option');
 
+// Survey list
 
 module.exports.displaySurveyList = function(req, res, next) {
-    let uid = req.user.id;
+    let userId = req.user.id;
 
-    Survey.find({userId: uid}, (err, surveyList) => {
+    Survey.find({userId: userId}, (err, surveyList) => {
         if (err)
         {
             return console.error(err);
@@ -19,6 +20,7 @@ module.exports.displaySurveyList = function(req, res, next) {
         {
             res.render('createsurvey/list', {
                 title: "Survey List",
+                writer: req.user.displayName,
                 surveys: surveyList,
                 displayName: req.user ? req.user.displayName:''
             });
@@ -33,12 +35,12 @@ module.exports.displaySurveyAdd = function(req, res, next) {
 
     res.render('createsurvey/add_edit', {
         title: 'Create a new survey',
-        survey: newSurvey
+        survey: newSurvey,
+        displayName: req.user ? req.user.displayName:''
     });
 }
 
 module.exports.saveSurveyAdd = function(req, res, next) {
-
     let newSurvey = Survey({
         _id: req.body.id,
         userId: req.user.id,
@@ -58,6 +60,7 @@ module.exports.saveSurveyAdd = function(req, res, next) {
         }
         else
         {
+
             console.log(survey);
             if (questions > 0) {
                 for (let i = 0; i < questions; i++){
@@ -131,7 +134,6 @@ processQuestion = function(req, questionNumber) {
         }
         else
         {
-            console.log(question);
             if (options > 0) {
                 for (let i = 0; i < options; i++){
                     processOption(req, questionNumber, q._id, i);

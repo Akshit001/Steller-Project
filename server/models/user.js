@@ -57,7 +57,7 @@ let User = mongoose.Schema(
 
     },
     {
-        collection: "users"
+        collection: "user"
     }
 );
 

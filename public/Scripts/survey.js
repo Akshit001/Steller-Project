@@ -1,5 +1,6 @@
 /*Diego Poblete #301158204, COMP 229, Section 008*/
 
+
 var q = 0;
 var o = [];
 
