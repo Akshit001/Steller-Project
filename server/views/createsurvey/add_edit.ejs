@@ -102,7 +102,7 @@
                   <input type="date" class="form-control"
                   id="startDate"
                   value= "<% survey.startDate %>"
-                  name="startDate">
+                  name="startDate" required>
                 </div>
 
                 <label for="endDate" class="col-form-label">End Date</label>
@@ -110,7 +110,7 @@
                   <input type="date" class="form-control"
                   id="endDate"
                   value= "<% survey.endDate %>"
-                  name="endDate">
+                  name="endDate" required>
                 </div>
             </fieldset>
 
@@ -124,10 +124,9 @@
 
             <div id="questionHolder">
                 <!-- Here goes the questions -->
-           
-            <button class="button-51" role="button" onclick="createQuestion()" value="New Question">New Question</button>
             </div>
 
+            <input class="button-51" type="button" onclick="createQuestion()" value="New Question">
 
             <fieldset class="form-group text-center my-5">
                 <input type="submit" class="btn btn-primary mx-3" value="Create">

@@ -7,6 +7,8 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let bodyParser = require('body-parser');
+
 
 //Modules for authentication
 
@@ -40,6 +42,9 @@ mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
 mongoDB.once('open', ()=>{
   console.log('Connected to MongoDB...');
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));

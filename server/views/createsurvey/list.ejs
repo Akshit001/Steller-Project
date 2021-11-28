@@ -107,7 +107,6 @@ tfoot {
   box-sizing: border-box;
   color: #41403e;
   cursor: pointer;
-  display: inline-block;
   font-family: Neucha, sans-serif;
   font-size: 1rem;
   line-height: 23px;
@@ -192,17 +191,16 @@ tfoot {
 <tbody>
         <% for(let count = 0; count < surveys.length; count++) { %>
             <tr align="center">
-                <td><%= surveys[count].surveyTitle %></td>
+                <td><%= surveys[count].title %></td>
                 <td><%= writer %></td>
                 <td><%= surveys[count].description %></td>
-                <td><%= surveys[count].startDate.toDateString() %></td>
-                <td><%= surveys[count].endDate.toDateString() %></td>
+                <td><%= surveys[count].startDate %></td>
+                <td><%= surveys[count].endDate %></td>
             </tr>
         <% } %></tbody>
     </table>
 
 </div>
-
 
 <%- include ../partials/bottom_nav.ejs %>
 <%- include ../partials/footer.ejs %>
