@@ -41,19 +41,18 @@ module.exports.displaySurveyAdd = function(req, res, next) {
 }
 
 module.exports.saveSurveyAdd = function(req, res, next) {
-    console.log(req.user.id);
     let newSurvey = Survey({
         _id: req.body.id,
         userId: req.user.id,
-        surveyTitle: req.body.surveyTitle ,
+        title: req.body.surveyTitle,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         description: req.body.description
     });
 
-    let questions = req.body.questions;
+    let questions = req.body.question.length;
 
-    Survey.create(newSurvey, (err, Survey) => {
+    Survey.create(newSurvey, (err, survey) => {
         if (err)
         {
             console.log(err);
@@ -61,9 +60,11 @@ module.exports.saveSurveyAdd = function(req, res, next) {
         }
         else
         {
-            if (questions != 0) {
+
+            console.log(survey);
+            if (questions > 0) {
                 for (let i = 0; i < questions; i++){
-                    processQuestion(req, res, next, i);
+                    processQuestion(req, i);
                 }
             }
             res.redirect('/survey-list');
@@ -82,9 +83,12 @@ module.exports.displaySurveyEdit = function(req, res, next) {
         }
         else
         {
+            // Get questions and options
+
             res.render('createsurvey/add_edit', {
                 title: 'Edit Survey', 
-                survey: surveyToEdit
+                survey: surveyToEdit,
+                questions: questionList
             })
         }
     });
@@ -96,20 +100,33 @@ module.exports.saveSurveyEdit = function(req, res, next) {
 
 // Question object
 
-displayQuestion = function() {
-
+getQuestions = function(sid) {
+    Question.find({surveyId: sid}, (err, questionList) =>{
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            return questionList;
+        }
+    });
 }
 
-processQuestion = function(req, res, next, questionNumber) {
+processQuestion = function(req, questionNumber) {
+    let q = Question();
+
     let newQuestion = Question({
-        _id: req.body.qid[questionNumber],
-        surveyId: req.body.sid,
-        question: req.body.question[questionNumber]
+        _id: q._id,
+        surveyId: req.body.id,
+        question: req.body.q[questionNumber],
+        questionNumber: questionNumber
     });
 
-    let options = req.body.options[questionNumber];
+    let options = req.body.option[questionNumber].length;
 
-    Question.create(newQuestion, (err, Question) => {
+    Question.create(newQuestion, (err, question) => {
         if (err)
         {
             console.log(err);
@@ -117,9 +134,9 @@ processQuestion = function(req, res, next, questionNumber) {
         }
         else
         {
-            if (options[questionNumber] != 0) {
+            if (options > 0) {
                 for (let i = 0; i < options; i++){
-                    processOption(req, res, next, questionNumber, i);
+                    processOption(req, questionNumber, q._id, i);
                 }
             }
         }
@@ -128,16 +145,39 @@ processQuestion = function(req, res, next, questionNumber) {
 
 // Option object
 
-displayOption = function() {
-
+getOptions = function(qid) {
+    Option.find({questionId: qid}, (err, OptionList) =>{
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            return {qid, OptionList}
+        }
+    });
 }
 
-processOption = function (req, res, next, questionNumber, optionNumber) {
+processOption = function (req, questionNumber, qid, optionNumber) {
+    let o = Option();
+
     let newOption = Option({
-        _id: req.body.oid[questionNumber][optionNumber],
-        questionId: req.body.qid[questionNumber],
-        option: req.body.option[questionNumber][optionNumber]
+        _id: o._id,
+        questionId: qid,
+        option: req.body.o[questionNumber][optionNumber],
+        optionNumber: optionNumber
     })
 
-
+    Option.create(newOption, (err, option) => {
+        if (err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            console.log(option);
+        }
+    });
 }

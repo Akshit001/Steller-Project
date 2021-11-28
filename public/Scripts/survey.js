@@ -1,27 +1,36 @@
 /*Diego Poblete #301158204, COMP 229, Section 008*/
 
-var questions = 0;
-var options = [];
+
+var q = 0;
+var o = [];
 
 function createQuestion() {
-    document.getElementById("questionHolder").innerHTML +=
-    `<fieldset>
-        <h4>Question ${questions + 1}</h4>
-        <input type="text" id="q_${questions}">
-        <fieldset id="o_${questions}"></fieldset>
-        <input type="button" onClick="createOption(${questions})" value="New Option">
+    let newQuestion = document.createElement('div');
+    newQuestion.innerHTML = 
+    `<fieldset id="question[${q}]" name="question[${q}]">
+        <h4>Question ${q + 1}</h4>
+        <input type="text" name="q[${q}]">
+        <div id="options[${q}]"></div>
+        <input type="button" onClick="createOption(${q})" value="New Option">
     </fieldset>`
     ;
 
-    options[questions] = 0;
-    questions += 1;
+    document.getElementById("questionHolder").appendChild(newQuestion);
+
+    o[q] = 0;
+    q += 1;
 }
 
 function createOption(questionNumber) {
-    document.getElementById("o_" + questionNumber).innerHTML +=
-    `<h5>Option ${options[questionNumber] + 1}<h5>
-    <input type="text" id="o_${questionNumber}_${options[questionNumber]}">`
+    let newOption = document.createElement('div');
+    newOption.innerHTML =
+    `<fieldset id="option[${questionNumber}][${o[questionNumber]}]">
+        <h5>Option ${o[questionNumber] + 1}</h5>
+        <input type="text" name="o[${questionNumber}][${o[questionNumber]}]">
+    </fieldset>`
     ;
 
-    options[questionNumber] += 1;
+    document.getElementById(`o[${questionNumber}]`).appendChild(newOption);
+
+    o[questionNumber] += 1;
 }

@@ -19,6 +19,7 @@ function requireAuth(req,res,next)
 
 
 /* GET home page. */
+
 router.get('/',requireAuth, surveyController.displaySurveyList);
 
 router.get('/add', requireAuth, surveyController.displaySurveyAdd);

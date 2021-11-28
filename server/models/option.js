@@ -5,7 +5,8 @@ let mongoose = require('mongoose');
 let optionModel = mongoose.Schema(
     {
         questionId: String,
-        option: String
+        option: String,
+        optionNumber: Number
     },
     {
         collection: "option"
