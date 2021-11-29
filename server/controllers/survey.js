@@ -50,7 +50,7 @@ module.exports.saveSurveyAdd = function(req, res, next) {
         description: req.body.description
     });
 
-    let questions = Object.keys(req.body.q).length;
+    let questions = req.body.q ? Object.keys(req.body.q).length : 0;
 
     Survey.create(newSurvey, (err, survey) => {
         if (err)
@@ -122,7 +122,7 @@ processQuestion = function(req, questionNumber, sid) {
         questionNumber: questionNumber
     });
 
-    let options = Object.keys(req.body.o[questionNumber]).length;
+    let options = req.body.o[questionNumber] ? Object.keys(req.body.o[questionNumber]).length : 0;
 
     Question.create(newQuestion, (err, question) => {
         if (err)
