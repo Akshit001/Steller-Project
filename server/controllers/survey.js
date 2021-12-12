@@ -4,9 +4,7 @@ const { render } = require('ejs');
 
 let Survey = require('../models/survey');
 let Question = require('../models/question');
-let Option = require('../models/option');
-const survey = require('../models/survey');
-const option = require('../models/option');   
+let Option = require('../models/option');  
 
 // Survey list
 
@@ -35,7 +33,7 @@ module.exports.displaySurveyList = function(req, res, next) {
 module.exports.deleteSurvey = function(req, res, next) {
     let id = req.params.id;
 
-    getQuestions(id).forEach((question) => {
+    JSON.parse(JSON.stringify(getQuestions(id))).forEach((question) => {
         Option.remove({questionId: question._id}, (err) => {
             if(err)
             {
@@ -127,7 +125,7 @@ module.exports.displaySurveyEdit = function(req, res, next) {
             // Get questions and options
 
             if (getQuestions(id) != null) {
-                questionList = getQuestions(id).forEach((q) => {
+                questionList = JSON.parse(JSON.stringify(getQuestions(id))).forEach((q) => {
                     optionList.push(getOptions(q._id));
                 });
             }
@@ -315,7 +313,7 @@ module.exports.displaySurveyAnswer = function(req, res, next) {
             // Get questions and options
 
             if (getQuestions(id) != null) {
-                questionList = getQuestions(id).forEach((q) => {
+                questionList = JSON.parse(JSON.stringify(getQuestions(id))).forEach((q) => {
                     optionList.push(getOptions(q._id));
                 });
             }

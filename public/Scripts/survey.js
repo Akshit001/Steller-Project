@@ -43,7 +43,7 @@ function deleteOption(questionNumber, optionNumber) {
 }
 
 function loadQuestions() {
-    while (q =! questions.length) {
+    while (q =! queList.length) {
         queList.forEach((que) => { 
             document.getElementById("questionHolder").appendChild(
             `<fieldset id="question[${q}]">
