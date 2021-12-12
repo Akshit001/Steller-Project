@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 let surveyController = require('../controllers/survey');
+const survey = require('../models/survey');
 
 
 function requireAuth(req,res,next)
@@ -26,6 +27,13 @@ router.get('/add', requireAuth, surveyController.displaySurveyAdd);
 router.post('/add', requireAuth, surveyController.saveSurveyAdd);
 
 router.get('/edit/:id', requireAuth, surveyController.displaySurveyEdit);
+router.post('/edit/:id', requireAuth, surveyController.saveSurveyEdit);
 
+router.get('/delete/:id', requireAuth, surveyController.deleteSurvey);
+
+router.get('/statistics/:id', requireAuth, surveyController.displayStatistics);
+
+router.get('/answer/:id', surveyController.displaySurveyAnswer);
+router.post('/answer/:id', surveyController.processAnswer);
 
 module.exports = router;

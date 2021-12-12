@@ -9,7 +9,6 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let bodyParser = require('body-parser');
 
-
 //Modules for authentication
 
 let session = require('express-session');
@@ -25,7 +24,7 @@ let flash = require('connect-flash')
 
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
-let surveyRouter = require('../routes/survey')
+let surveyRouter = require('../routes/survey');
 
 let app = express();
 
@@ -104,6 +103,7 @@ passport.use(strategy);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveyRouter);
+app.use('/survey-answer', surveyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

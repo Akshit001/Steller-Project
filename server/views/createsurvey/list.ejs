@@ -187,11 +187,23 @@ a .button-55:focus {
 <tbody>
         <% for(let count = 0; count < surveys.length; count++) { %>
             <tr align="center">
-                <td><%= surveys[count].title %></td>
+                <td>
+                  <a href="/survey-list/edit/<%= surveys[count]._id %>">
+                    <%= surveys[count].title %>
+                  </a>
+                </td>
                 <td><%= writer %></td>
                 <td><%= surveys[count].description %></td>
                 <td><%= surveys[count].startDate %></td>
                 <td><%= surveys[count].endDate %></td>
+                <td>
+                  <a href="/survey-list/edit/<%= surveys[count]._id %>" class="btn btn-primary btn-sm">
+                  <i class="fas fa-pencil-alt"></i></a>
+              </td>
+              <td>
+                  <a href="/survey-list/delete/<%= surveys[count]._id %>" class="btn btn-danger btn-sm">
+                  <i class="fas fa-trash-alt"></i></a>
+              </td>
             </tr>
         <% } %></tbody>
     </table>

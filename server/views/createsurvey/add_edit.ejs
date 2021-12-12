@@ -89,11 +89,13 @@
      
         <form method="POST" autocomplete="off">
 
+          <input type="hidden" name="id" value="<%= survey._id %>">
+
             <fieldset class="form-group my-3">
                 <label for="surveyTitle" class="h5">The title of survey</label>
                 <input type="text" class="form-control"
                 name="surveyTitle" placeholder="Enter the title of survey"
-                id="surveyTitle" required value="<% survey.title %>">
+                id="surveyTitle" required value="<%= survey.title %>">
             </fieldset>
             
             <fieldset class="form-group my-3">
@@ -101,7 +103,7 @@
                 <div class="col-5">
                   <input type="date" class="form-control"
                   id="startDate"
-                  value= "<% survey.startDate %>"
+                  value= "<%= formatDate(survey.startDate) %>"
                   name="startDate" required>
                 </div>
 
@@ -109,7 +111,7 @@
                 <div class="col-5">
                   <input type="date" class="form-control"
                   id="endDate"
-                  value= "<% survey.endDate %>"
+                  value= "<%= formatDate(survey.endDate) %>"
                   name="endDate" required>
                 </div>
             </fieldset>
@@ -119,7 +121,7 @@
             </div>
 
             <fieldset class="form-group my-3">
-                <textarea id="description" name="description" rows="4" cols="55"><% survey.description %></textarea>
+                <textarea id="description" name="description" rows="4" cols="55"><%= survey.description %></textarea>
             </fieldset>
 
             <div id="questionHolder">
@@ -129,7 +131,7 @@
             <input class="button-51" type="button" onclick="createQuestion()" value="New Question">
 
             <fieldset class="form-group text-center my-5">
-                <input type="submit" class="btn btn-primary mx-3" value="Create">
+                <input type="submit" class="btn btn-primary mx-3" value="Save">
                 <a href="/survey-list">
                     <input type="button" class="btn btn-secondary mx-3" value="Cancel">
                 </a>
@@ -139,6 +141,13 @@
     </div>
 </div>
 
+<% if (questions.length > 0) { %>
+  <script>
+     var queList = JSON.parse('<%- JSON.stringify(questions) %>');
+     var optList = JSON.parse('<%- JSON.stringify(options) %>');
+     loadQuestions();
+  </script>
+<% } %>
 <script src="/Scripts/survey.js"></script>
 
 <%- include ../partials/bottom_nav.ejs %>
